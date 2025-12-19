@@ -664,6 +664,156 @@
         "preloadAsSound": false,
         "preloadInCache": false,
         "userAdded": false
+      },
+      {
+        "file": "Angin Gunung.wav",
+        "kind": "audio",
+        "metadata": "",
+        "name": "Angin Gunung.wav",
+        "preloadAsMusic": false,
+        "preloadAsSound": false,
+        "preloadInCache": false,
+        "userAdded": false
+      },
+      {
+        "file": "Burung.wav",
+        "kind": "audio",
+        "metadata": "",
+        "name": "Burung.wav",
+        "preloadAsMusic": false,
+        "preloadAsSound": false,
+        "preloadInCache": false,
+        "userAdded": false
+      },
+      {
+        "file": "Pop Up Teks.wav",
+        "kind": "audio",
+        "metadata": "",
+        "name": "Pop Up Teks.wav",
+        "preloadAsMusic": false,
+        "preloadAsSound": false,
+        "preloadInCache": false,
+        "userAdded": false
+      },
+      {
+        "file": "Pause or Jeda.wav",
+        "kind": "audio",
+        "metadata": "",
+        "name": "Pause or Jeda.wav",
+        "preloadAsMusic": false,
+        "preloadAsSound": false,
+        "preloadInCache": false,
+        "userAdded": false
+      },
+      {
+        "file": "Lanjutkan.wav",
+        "kind": "audio",
+        "metadata": "",
+        "name": "Lanjutkan.wav",
+        "preloadAsMusic": false,
+        "preloadAsSound": false,
+        "preloadInCache": false,
+        "userAdded": false
+      },
+      {
+        "file": "Back2.wav",
+        "kind": "audio",
+        "metadata": "",
+        "name": "Back2.wav",
+        "preloadAsMusic": false,
+        "preloadAsSound": false,
+        "preloadInCache": false,
+        "userAdded": false
+      },
+      {
+        "file": "Back To Home.wav",
+        "kind": "audio",
+        "metadata": "",
+        "name": "Back To Home.wav",
+        "preloadAsMusic": false,
+        "preloadAsSound": false,
+        "preloadInCache": false,
+        "userAdded": false
+      },
+      {
+        "file": "Lanjutkan2.wav",
+        "kind": "audio",
+        "metadata": "",
+        "name": "Lanjutkan2.wav",
+        "preloadAsMusic": false,
+        "preloadAsSound": false,
+        "preloadInCache": false,
+        "userAdded": false
+      },
+      {
+        "file": "Jawaban Benar Bertambah.wav",
+        "kind": "audio",
+        "metadata": "",
+        "name": "Jawaban Benar Bertambah.wav",
+        "preloadAsMusic": false,
+        "preloadAsSound": false,
+        "preloadInCache": false,
+        "userAdded": false
+      },
+      {
+        "file": "Jawaban Kiri.wav",
+        "kind": "audio",
+        "metadata": "",
+        "name": "Jawaban Kiri.wav",
+        "preloadAsMusic": false,
+        "preloadAsSound": false,
+        "preloadInCache": false,
+        "userAdded": false
+      },
+      {
+        "file": "Jawaban Kanan.wav",
+        "kind": "audio",
+        "metadata": "",
+        "name": "Jawaban Kanan.wav",
+        "preloadAsMusic": false,
+        "preloadAsSound": false,
+        "preloadInCache": false,
+        "userAdded": false
+      },
+      {
+        "file": "Nyawa Berkurang.wav",
+        "kind": "audio",
+        "metadata": "",
+        "name": "Nyawa Berkurang.wav",
+        "preloadAsMusic": false,
+        "preloadAsSound": false,
+        "preloadInCache": false,
+        "userAdded": false
+      },
+      {
+        "file": "Timer.wav",
+        "kind": "audio",
+        "metadata": "",
+        "name": "Timer.wav",
+        "preloadAsMusic": false,
+        "preloadAsSound": false,
+        "preloadInCache": false,
+        "userAdded": false
+      },
+      {
+        "file": "Pesawat (Dirigible).wav",
+        "kind": "audio",
+        "metadata": "",
+        "name": "Pesawat (Dirigible).wav",
+        "preloadAsMusic": false,
+        "preloadAsSound": false,
+        "preloadInCache": false,
+        "userAdded": false
+      },
+      {
+        "file": "Selamat Kamu Menang.wav",
+        "kind": "audio",
+        "metadata": "",
+        "name": "Selamat Kamu Menang.wav",
+        "preloadAsMusic": false,
+        "preloadAsSound": false,
+        "preloadInCache": false,
+        "userAdded": false
       }
     ],
     "resourceFolders": []
@@ -825,6 +975,11 @@
           "value": 50
         }
       ]
+    },
+    {
+      "name": "tempload",
+      "type": "number",
+      "value": 0
     }
   ],
   "layouts": [
@@ -2031,6 +2186,26 @@
           "actions": [
             {
               "type": {
+                "value": "ReadStringFromStorage"
+              },
+              "parameters": [
+                "\"game\"",
+                "\"game\"",
+                "",
+                "tempload"
+              ]
+            },
+            {
+              "type": {
+                "value": "JSONToVariableStructure2"
+              },
+              "parameters": [
+                "tempload",
+                "game"
+              ]
+            },
+            {
+              "type": {
                 "value": "PlaySoundCanal"
               },
               "parameters": [
@@ -2639,6 +2814,16 @@
                 "=",
                 "MusicSlider.Value()"
               ]
+            },
+            {
+              "type": {
+                "value": "EcrireFichierTxt"
+              },
+              "parameters": [
+                "\"game\"",
+                "\"game\"",
+                "ToJSON(game)"
+              ]
             }
           ]
         },
@@ -2666,6 +2851,16 @@
                 "2",
                 "=",
                 "game.sound"
+              ]
+            },
+            {
+              "type": {
+                "value": "EcrireFichierTxt"
+              },
+              "parameters": [
+                "\"game\"",
+                "\"game\"",
+                "ToJSON(game)"
               ]
             }
           ]
@@ -4125,7 +4320,13 @@
           "name": "timer",
           "type": "PanelSpriteSlider::PanelSpriteSlider",
           "variant": "Custom dek2",
-          "variables": [],
+          "variables": [
+            {
+              "name": "Value",
+              "type": "number",
+              "value": 0
+            }
+          ],
           "effects": [
             {
               "effectType": "Outline",
@@ -6765,6 +6966,98 @@
           "actions": [
             {
               "type": {
+                "value": "ReadStringFromStorage"
+              },
+              "parameters": [
+                "\"game\"",
+                "\"game\"",
+                "",
+                "tempload"
+              ]
+            },
+            {
+              "type": {
+                "value": "JSONToVariableStructure2"
+              },
+              "parameters": [
+                "tempload",
+                "game"
+              ]
+            },
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "Backsound 1.wav",
+                "1",
+                "yes",
+                "game.music",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "Burung.wav",
+                "2",
+                "yes",
+                "game.sound",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "Angin Gunung.wav",
+                "2",
+                "yes",
+                "game.sound",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "ModVolumeSoundCanal"
+              },
+              "parameters": [
+                "",
+                "1",
+                "=",
+                "40"
+              ]
+            },
+            {
+              "type": {
+                "value": "PanelSpriteSlider::PanelSpriteSlider::SetValue"
+              },
+              "parameters": [
+                "VolumeSlider",
+                "=",
+                "game.sound",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "PanelSpriteSlider::PanelSpriteSlider::SetValue"
+              },
+              "parameters": [
+                "MusicSlider",
+                "=",
+                "game.music",
+                ""
+              ]
+            },
+            {
+              "type": {
                 "value": "ResetTimer"
               },
               "parameters": [
@@ -6923,6 +7216,19 @@
                 },
                 {
                   "type": {
+                    "value": "PlaySoundCanal"
+                  },
+                  "parameters": [
+                    "",
+                    "Pop Up Teks.wav",
+                    "2",
+                    "no",
+                    "game.sound",
+                    "1"
+                  ]
+                },
+                {
+                  "type": {
                     "value": "Tween::TweenBehavior::AddObjectPositionYTween2"
                   },
                   "parameters": [
@@ -6956,6 +7262,19 @@
                     "2",
                     ""
                   ]
+                },
+                {
+                  "type": {
+                    "value": "PlaySoundCanal"
+                  },
+                  "parameters": [
+                    "",
+                    "Pop Up Teks.wav",
+                    "2",
+                    "no",
+                    "game.sound",
+                    "1"
+                  ]
                 }
               ]
             },
@@ -6984,6 +7303,19 @@
                 }
               ],
               "actions": [
+                {
+                  "type": {
+                    "value": "PlaySoundCanal"
+                  },
+                  "parameters": [
+                    "",
+                    "Lanjutkan2.wav",
+                    "2",
+                    "no",
+                    "game.sound",
+                    "1"
+                  ]
+                },
                 {
                   "type": {
                     "value": "Wait"
@@ -7121,6 +7453,7 @@
               "colorG": 211,
               "colorR": 126,
               "creationTime": 0,
+              "folded": true,
               "name": "Correct",
               "source": "",
               "type": "BuiltinCommonInstructions::Group",
@@ -7587,6 +7920,7 @@
               "colorG": 231,
               "colorR": 248,
               "creationTime": 0,
+              "folded": true,
               "name": "Countdown",
               "source": "",
               "type": "BuiltinCommonInstructions::Group",
@@ -7843,6 +8177,19 @@
                     "",
                     "\"Click Delay\""
                   ]
+                },
+                {
+                  "type": {
+                    "value": "PlaySoundCanal"
+                  },
+                  "parameters": [
+                    "",
+                    "Jawaban Kiri.wav",
+                    "2",
+                    "no",
+                    "game.sound",
+                    "1"
+                  ]
                 }
               ],
               "events": [
@@ -7901,6 +8248,19 @@
                         "Wrong__FX",
                         "True",
                         ""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "PlaySoundCanal"
+                      },
+                      "parameters": [
+                        "",
+                        "Nyawa Berkurang.wav",
+                        "2",
+                        "no",
+                        "game.sound",
+                        "1"
                       ]
                     }
                   ]
@@ -7970,6 +8330,19 @@
                         "Correct_FX",
                         "True",
                         ""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "PlaySoundCanal"
+                      },
+                      "parameters": [
+                        "",
+                        "Jawaban Benar Bertambah.wav",
+                        "2",
+                        "no",
+                        "game.sound",
+                        "1"
                       ]
                     }
                   ],
@@ -8040,6 +8413,19 @@
                     "",
                     "\"Click Delay\""
                   ]
+                },
+                {
+                  "type": {
+                    "value": "PlaySoundCanal"
+                  },
+                  "parameters": [
+                    "",
+                    "Jawaban Kanan.wav",
+                    "2",
+                    "no",
+                    "game.sound",
+                    "1"
+                  ]
                 }
               ],
               "events": [
@@ -8098,6 +8484,19 @@
                         "Wrong__FX",
                         "True",
                         ""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "PlaySoundCanal"
+                      },
+                      "parameters": [
+                        "",
+                        "Nyawa Berkurang.wav",
+                        "2",
+                        "no",
+                        "game.sound",
+                        "1"
                       ]
                     }
                   ]
@@ -8167,6 +8566,19 @@
                         "Correct_FX",
                         "True",
                         ""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "PlaySoundCanal"
+                      },
+                      "parameters": [
+                        "",
+                        "Jawaban Benar Bertambah.wav",
+                        "2",
+                        "no",
+                        "game.sound",
+                        "1"
                       ]
                     }
                   ],
@@ -8281,7 +8693,6 @@
           "colorG": 6,
           "colorR": 36,
           "creationTime": 0,
-          "folded": true,
           "name": "Timer",
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
@@ -8318,6 +8729,19 @@
                 },
                 {
                   "type": {
+                    "value": "PlaySoundCanal"
+                  },
+                  "parameters": [
+                    "",
+                    "Timer.wav",
+                    "3",
+                    "no",
+                    "100",
+                    "1"
+                  ]
+                },
+                {
+                  "type": {
                     "value": "DebuggerTools::ConsoleLog"
                   },
                   "parameters": [
@@ -8330,7 +8754,28 @@
             },
             {
               "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [],
+              "conditions": [
+                {
+                  "type": {
+                    "value": "BooleanVariable"
+                  },
+                  "parameters": [
+                    "Dialoguee",
+                    "False",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "BooleanVariable"
+                  },
+                  "parameters": [
+                    "Win",
+                    "False",
+                    ""
+                  ]
+                }
+              ],
               "actions": [
                 {
                   "type": {
@@ -8339,7 +8784,7 @@
                   "parameters": [
                     "TimerLeft",
                     "=",
-                    "TotalTime - TimerElapsedTime(\"Main Timer\")"
+                    "max(0, TotalTime - TimerElapsedTime(\"Main Timer\"))"
                   ]
                 }
               ]
@@ -8349,12 +8794,22 @@
               "conditions": [
                 {
                   "type": {
-                    "value": "NumberVariable"
+                    "value": "BooleanVariable"
                   },
                   "parameters": [
-                    "TimerLeft",
-                    "<",
-                    "60"
+                    "Dialoguee",
+                    "False",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "BooleanVariable"
+                  },
+                  "parameters": [
+                    "Win",
+                    "False",
+                    ""
                   ]
                 }
               ],
@@ -8392,9 +8847,25 @@
                   },
                   "parameters": [
                     "TimerLeft",
-                    "<",
+                    "<=",
                     "10"
                   ]
+                },
+                {
+                  "type": {
+                    "value": "NumberVariable"
+                  },
+                  "parameters": [
+                    "TimerLeft",
+                    ">",
+                    "0"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": []
                 }
               ],
               "actions": [
@@ -8420,9 +8891,15 @@
                   },
                   "parameters": [
                     "TimerLeft",
-                    "<",
+                    "<=",
                     "0"
                   ]
+                },
+                {
+                  "type": {
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": []
                 }
               ],
               "actions": [
@@ -8445,6 +8922,15 @@
                     "Text",
                     "=",
                     "\"0:00\""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "StopSoundCanal"
+                  },
+                  "parameters": [
+                    "",
+                    "3"
                   ]
                 },
                 {
@@ -8475,7 +8961,6 @@
           "colorG": 107,
           "colorR": 112,
           "creationTime": 0,
-          "folded": true,
           "name": "Pause",
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
@@ -8512,6 +8997,28 @@
                 }
               ],
               "actions": [
+                {
+                  "type": {
+                    "value": "StopSoundCanal"
+                  },
+                  "parameters": [
+                    "",
+                    "3"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "PlaySoundCanal"
+                  },
+                  "parameters": [
+                    "",
+                    "Pause or Jeda.wav",
+                    "2",
+                    "no",
+                    "game.sound",
+                    "1"
+                  ]
+                },
                 {
                   "type": {
                     "value": "PauseTimer"
@@ -8650,6 +9157,28 @@
               "actions": [
                 {
                   "type": {
+                    "value": "RePlaySoundCanal"
+                  },
+                  "parameters": [
+                    "",
+                    "3"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "PlaySoundCanal"
+                  },
+                  "parameters": [
+                    "",
+                    "Lanjutkan.wav",
+                    "2",
+                    "no",
+                    "game.sound",
+                    "1"
+                  ]
+                },
+                {
+                  "type": {
                     "value": "UnPauseTimer"
                   },
                   "parameters": [
@@ -8780,6 +9309,19 @@
               "actions": [
                 {
                   "type": {
+                    "value": "PlaySoundCanal"
+                  },
+                  "parameters": [
+                    "",
+                    "Back2.wav",
+                    "2",
+                    "no",
+                    "game.sound",
+                    "1"
+                  ]
+                },
+                {
+                  "type": {
                     "value": "Wait"
                   },
                   "parameters": [
@@ -8793,6 +9335,57 @@
                   "parameters": [
                     "",
                     "\"Gameplay\""
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "ButtonStates::ButtonFSM::IsClicked"
+                  },
+                  "parameters": [
+                    "Home",
+                    "ButtonFSM",
+                    ""
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "PlaySoundCanal"
+                  },
+                  "parameters": [
+                    "",
+                    "Back To Home.wav",
+                    "2",
+                    "no",
+                    "game.sound",
+                    "1"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "EnableLayerEffect"
+                  },
+                  "parameters": [
+                    "",
+                    "",
+                    "\"Effect\"",
+                    "yes"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Scene"
+                  },
+                  "parameters": [
+                    "",
+                    "\"Home\"",
+                    ""
                   ]
                 }
               ]
@@ -8831,6 +9424,15 @@
                 }
               ],
               "actions": [
+                {
+                  "type": {
+                    "value": "StopSoundCanal"
+                  },
+                  "parameters": [
+                    "",
+                    "3"
+                  ]
+                },
                 {
                   "type": {
                     "value": "RemoveTimer"
@@ -8883,6 +9485,19 @@
                     "\"easeOutQuint\"",
                     "1.5",
                     ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "PlaySoundCanal"
+                  },
+                  "parameters": [
+                    "",
+                    "Selamat Kamu Menang.wav",
+                    "2",
+                    "no",
+                    "game.sound",
+                    "1"
                   ]
                 },
                 {
@@ -8965,6 +9580,15 @@
                     "3",
                     ""
                   ]
+                },
+                {
+                  "type": {
+                    "value": "StopSoundCanal"
+                  },
+                  "parameters": [
+                    "",
+                    "3"
+                  ]
                 }
               ]
             },
@@ -8983,6 +9607,19 @@
                 }
               ],
               "actions": [
+                {
+                  "type": {
+                    "value": "PlaySoundCanal"
+                  },
+                  "parameters": [
+                    "",
+                    "Back.wav",
+                    "2",
+                    "no",
+                    "game.sound",
+                    "1"
+                  ]
+                },
                 {
                   "type": {
                     "value": "Wait"
@@ -9017,6 +9654,19 @@
                 }
               ],
               "actions": [
+                {
+                  "type": {
+                    "value": "PlaySoundCanal"
+                  },
+                  "parameters": [
+                    "",
+                    "Back To Home.wav",
+                    "2",
+                    "no",
+                    "game.sound",
+                    "1"
+                  ]
+                },
                 {
                   "type": {
                     "value": "SetBooleanVariable"
@@ -9117,9 +9767,107 @@
           "parameters": []
         },
         {
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [],
-          "actions": []
+          "colorB": 228,
+          "colorG": 176,
+          "colorR": 74,
+          "creationTime": 0,
+          "folded": true,
+          "name": "Slider",
+          "source": "",
+          "type": "BuiltinCommonInstructions::Group",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SetNumberVariable"
+                  },
+                  "parameters": [
+                    "TimerLeft",
+                    "=",
+                    "TotalTime - TimerElapsedTime(\"Main Timer\")"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SetNumberVariable"
+                  },
+                  "parameters": [
+                    "game.sound",
+                    "=",
+                    "VolumeSlider.Value()"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "SetNumberVariable"
+                  },
+                  "parameters": [
+                    "game.music",
+                    "=",
+                    "MusicSlider.Value()"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "EcrireFichierTxt"
+                  },
+                  "parameters": [
+                    "\"game\"",
+                    "\"game\"",
+                    "ToJSON(game)"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "ModVolumeSoundCanal"
+                  },
+                  "parameters": [
+                    "",
+                    "1",
+                    "=",
+                    "game.music"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "ModVolumeSoundCanal"
+                  },
+                  "parameters": [
+                    "",
+                    "2",
+                    "=",
+                    "game.sound"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "EcrireFichierTxt"
+                  },
+                  "parameters": [
+                    "\"game\"",
+                    "\"game\"",
+                    "ToJSON(game)"
+                  ]
+                }
+              ]
+            }
+          ],
+          "parameters": []
         }
       ],
       "layers": [
@@ -9651,6 +10399,19 @@
               "parameters": [
                 "",
                 "\"Transition\""
+              ]
+            },
+            {
+              "type": {
+                "value": "PlaySoundCanal"
+              },
+              "parameters": [
+                "",
+                "Pesawat (Dirigible).wav",
+                "2",
+                "no",
+                "game.sound",
+                "1"
               ]
             }
           ]
