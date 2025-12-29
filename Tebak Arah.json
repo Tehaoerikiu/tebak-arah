@@ -1,9 +1,9 @@
 {
   "firstLayout": "",
   "gdVersion": {
-    "build": 245,
+    "build": 251,
     "major": 5,
-    "minor": 5,
+    "minor": 6,
     "revision": 0
   },
   "properties": {
@@ -80,7 +80,10 @@
     "authorIds": [],
     "authorUsernames": [],
     "categories": [],
-    "playableDevices": [],
+    "playableDevices": [
+      "mobile",
+      "mobile"
+    ],
     "extensionProperties": [],
     "platforms": [
       {
@@ -815,8 +818,7 @@
         "preloadInCache": false,
         "userAdded": false
       }
-    ],
-    "resourceFolders": []
+    ]
   },
   "objects": [
     {
@@ -998,12 +1000,14 @@
         "gridType": "rectangular",
         "gridWidth": 32,
         "gridHeight": 32,
+        "gridDepth": 32,
         "gridOffsetX": 0,
         "gridOffsetY": 0,
+        "gridOffsetZ": 0,
         "gridColor": 10401023,
         "gridAlpha": 0.8,
         "snap": false,
-        "zoomFactor": 0.4335774304702403,
+        "zoomFactor": 0.5117784035210212,
         "windowMask": false,
         "selectedLayer": ""
       },
@@ -2871,6 +2875,7 @@
           "ambientLightColorB": 128,
           "ambientLightColorG": 128,
           "ambientLightColorR": 128,
+          "camera2DPlaneMaxDrawingDistance": 5000,
           "camera3DFarPlaneDistance": 10000,
           "camera3DFieldOfView": 45,
           "camera3DNearPlaneDistance": 3,
@@ -2888,6 +2893,7 @@
           "ambientLightColorB": 200,
           "ambientLightColorG": 200,
           "ambientLightColorR": 200,
+          "camera2DPlaneMaxDrawingDistance": 5000,
           "camera3DFarPlaneDistance": 10000,
           "camera3DFieldOfView": 45,
           "camera3DNearPlaneDistance": 3,
@@ -2952,6 +2958,7 @@
           "ambientLightColorB": 200,
           "ambientLightColorG": 200,
           "ambientLightColorR": 200,
+          "camera2DPlaneMaxDrawingDistance": 5000,
           "camera3DFarPlaneDistance": 10000,
           "camera3DFieldOfView": 45,
           "camera3DNearPlaneDistance": 3,
@@ -3005,6 +3012,7 @@
           "ambientLightColorB": 200,
           "ambientLightColorG": 200,
           "ambientLightColorR": 200,
+          "camera2DPlaneMaxDrawingDistance": 5000,
           "camera3DFarPlaneDistance": 10000,
           "camera3DFieldOfView": 45,
           "camera3DNearPlaneDistance": 3,
@@ -3117,12 +3125,14 @@
         "gridType": "rectangular",
         "gridWidth": 32,
         "gridHeight": 32,
+        "gridDepth": 32,
         "gridOffsetX": 0,
         "gridOffsetY": 0,
+        "gridOffsetZ": 0,
         "gridColor": 10401023,
         "gridAlpha": 0.8,
         "snap": false,
-        "zoomFactor": 0.31119749424452414,
+        "zoomFactor": 0.36732575450588684,
         "windowMask": false,
         "selectedLayer": "Blur"
       },
@@ -3167,6 +3177,17 @@
             },
             {
               "name": "Win_Panel"
+            }
+          ]
+        },
+        {
+          "name": "Control",
+          "objects": [
+            {
+              "name": "Left"
+            },
+            {
+              "name": "Right"
             }
           ]
         }
@@ -3333,6 +3354,16 @@
           "name": "end",
           "type": "boolean",
           "value": false
+        },
+        {
+          "name": "isPaused",
+          "type": "number",
+          "value": 0
+        },
+        {
+          "name": "IsQuestionVisible",
+          "type": "boolean",
+          "value": true
         }
       ],
       "instances": [
@@ -7145,6 +7176,33 @@
                 "\"transition\""
               ]
             }
+          ],
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": true,
+                    "value": "SystemInfo::HasTouchScreen"
+                  },
+                  "parameters": [
+                    ""
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Delete"
+                  },
+                  "parameters": [
+                    "Control",
+                    ""
+                  ]
+                }
+              ]
+            }
           ]
         },
         {
@@ -7152,7 +7210,6 @@
           "colorG": 77,
           "colorR": 71,
           "creationTime": 0,
-          "folded": true,
           "name": "Dialogue",
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
@@ -7348,6 +7405,16 @@
                 },
                 {
                   "type": {
+                    "value": "ActivateBehavior"
+                  },
+                  "parameters": [
+                    "Resume",
+                    "ButtonFSM",
+                    "yes"
+                  ]
+                },
+                {
+                  "type": {
                     "value": "Tween::TweenBehavior::AddObjectPositionYTween2"
                   },
                   "parameters": [
@@ -7391,16 +7458,6 @@
                     "Dialoguee",
                     "False",
                     ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "ActivateBehavior"
-                  },
-                  "parameters": [
-                    "Resume",
-                    "ButtonFSM",
-                    "yes"
                   ]
                 },
                 {
@@ -8138,7 +8195,6 @@
           "colorG": 176,
           "colorR": 74,
           "creationTime": 0,
-          "folded": true,
           "name": "Main Codes",
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
@@ -8148,11 +8204,21 @@
               "conditions": [
                 {
                   "type": {
-                    "value": "ButtonStates::ButtonFSM::IsClicked"
+                    "value": "NumberVariable"
                   },
                   "parameters": [
-                    "Left",
-                    "ButtonFSM",
+                    "QuestionIndex",
+                    ">=",
+                    "11"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "BooleanVariable"
+                  },
+                  "parameters": [
+                    "IsQuestionVisible",
+                    "True",
                     ""
                   ]
                 },
@@ -8162,455 +8228,1227 @@
                   },
                   "parameters": [
                     "",
-                    "\"Click Delay\"",
+                    "\"QuestionShow\"",
                     ">",
-                    "0.8"
+                    "1"
                   ]
                 }
               ],
               "actions": [
                 {
                   "type": {
-                    "value": "ResetTimer"
+                    "value": "Cache"
                   },
                   "parameters": [
-                    "",
-                    "\"Click Delay\""
+                    "Questions"
                   ]
                 },
                 {
                   "type": {
-                    "value": "PlaySoundCanal"
+                    "value": "SetBooleanVariable"
                   },
                   "parameters": [
-                    "",
-                    "Jawaban Kiri.wav",
-                    "2",
-                    "no",
-                    "game.sound",
-                    "1"
+                    "IsQuestionVisible",
+                    "False",
+                    ""
                   ]
                 }
-              ],
+              ]
+            },
+            {
+              "colorB": 94,
+              "colorG": 85,
+              "colorR": 70,
+              "creationTime": 0,
+              "name": "Control",
+              "source": "",
+              "type": "BuiltinCommonInstructions::Group",
               "events": [
                 {
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "value": "StringVariable"
-                      },
-                      "parameters": [
-                        "Directions[\"Q\" + ToString(QuestionIndex)]",
-                        "!=",
-                        "\"Left\""
-                      ]
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "value": "SetNumberVariable"
-                      },
-                      "parameters": [
-                        "HeartLeft",
-                        "-",
-                        "1"
-                      ]
-                    },
-                    {
-                      "type": {
-                        "value": "TextContainerCapability::TextContainerBehavior::SetValue"
-                      },
-                      "parameters": [
-                        "Heart_Counter",
-                        "Text",
-                        "=",
-                        "HeartLeft + \"/3\""
-                      ]
-                    },
-                    {
-                      "type": {
-                        "value": "PanelSpriteSlider::PanelSpriteSlider::SetValue"
-                      },
-                      "parameters": [
-                        "Hearts",
-                        "=",
-                        "HeartLeft",
-                        ""
-                      ]
-                    },
-                    {
-                      "type": {
-                        "value": "SetBooleanVariable"
-                      },
-                      "parameters": [
-                        "Wrong__FX",
-                        "True",
-                        ""
-                      ]
-                    },
-                    {
-                      "type": {
-                        "value": "PlaySoundCanal"
-                      },
-                      "parameters": [
-                        "",
-                        "Nyawa Berkurang.wav",
-                        "2",
-                        "no",
-                        "game.sound",
-                        "1"
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "value": "StringVariable"
-                      },
-                      "parameters": [
-                        "Directions[\"Q\" + ToString(QuestionIndex)]",
-                        "=",
-                        "\"Left\""
-                      ]
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "value": "SetNumberVariable"
-                      },
-                      "parameters": [
-                        "QuestionIndex",
-                        "+",
-                        "1"
-                      ]
-                    },
-                    {
-                      "type": {
-                        "value": "SetNumberVariable"
-                      },
-                      "parameters": [
-                        "Fish_Collectedd",
-                        "+",
-                        "1"
-                      ]
-                    },
-                    {
-                      "type": {
-                        "value": "TextContainerCapability::TextContainerBehavior::SetValue"
-                      },
-                      "parameters": [
-                        "Fish_Collected",
-                        "Text",
-                        "=",
-                        "Fish_Collectedd + \"/20\""
-                      ]
-                    },
-                    {
-                      "type": {
-                        "value": "PanelSpriteSlider::PanelSpriteSlider::SetValue"
-                      },
-                      "parameters": [
-                        "Fish",
-                        "=",
-                        "Fish_Collectedd",
-                        ""
-                      ]
-                    },
-                    {
-                      "type": {
-                        "value": "SetBooleanVariable"
-                      },
-                      "parameters": [
-                        "Correct_FX",
-                        "True",
-                        ""
-                      ]
-                    },
-                    {
-                      "type": {
-                        "value": "PlaySoundCanal"
-                      },
-                      "parameters": [
-                        "",
-                        "Jawaban Benar Bertambah.wav",
-                        "2",
-                        "no",
-                        "game.sound",
-                        "1"
-                      ]
-                    }
-                  ],
+                  "colorB": 0,
+                  "colorG": 0,
+                  "colorR": 0,
+                  "creationTime": 0,
+                  "name": "Mobile",
+                  "source": "",
+                  "type": "BuiltinCommonInstructions::Group",
                   "events": [
                     {
                       "type": "BuiltinCommonInstructions::Standard",
                       "conditions": [
                         {
                           "type": {
+                            "value": "SystemInfo::HasTouchScreen"
+                          },
+                          "parameters": [
+                            ""
+                          ]
+                        }
+                      ],
+                      "actions": [],
+                      "events": [
+                        {
+                          "type": "BuiltinCommonInstructions::Standard",
+                          "conditions": [
+                            {
+                              "type": {
+                                "value": "ButtonStates::ButtonFSM::IsClicked"
+                              },
+                              "parameters": [
+                                "Left",
+                                "ButtonFSM",
+                                ""
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "CompareTimer"
+                              },
+                              "parameters": [
+                                "",
+                                "\"Click Delay\"",
+                                ">",
+                                "0.8"
+                              ]
+                            }
+                          ],
+                          "actions": [
+                            {
+                              "type": {
+                                "value": "ResetTimer"
+                              },
+                              "parameters": [
+                                "",
+                                "\"Click Delay\""
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "PlaySoundCanal"
+                              },
+                              "parameters": [
+                                "",
+                                "Jawaban Kiri.wav",
+                                "2",
+                                "no",
+                                "game.sound",
+                                "1"
+                              ]
+                            }
+                          ],
+                          "events": [
+                            {
+                              "type": "BuiltinCommonInstructions::Standard",
+                              "conditions": [
+                                {
+                                  "type": {
+                                    "value": "StringVariable"
+                                  },
+                                  "parameters": [
+                                    "Directions[\"Q\" + ToString(QuestionIndex)]",
+                                    "!=",
+                                    "\"Left\""
+                                  ]
+                                }
+                              ],
+                              "actions": [
+                                {
+                                  "type": {
+                                    "value": "SetNumberVariable"
+                                  },
+                                  "parameters": [
+                                    "HeartLeft",
+                                    "-",
+                                    "1"
+                                  ]
+                                },
+                                {
+                                  "type": {
+                                    "value": "TextContainerCapability::TextContainerBehavior::SetValue"
+                                  },
+                                  "parameters": [
+                                    "Heart_Counter",
+                                    "Text",
+                                    "=",
+                                    "HeartLeft + \"/3\""
+                                  ]
+                                },
+                                {
+                                  "type": {
+                                    "value": "PanelSpriteSlider::PanelSpriteSlider::SetValue"
+                                  },
+                                  "parameters": [
+                                    "Hearts",
+                                    "=",
+                                    "HeartLeft",
+                                    ""
+                                  ]
+                                },
+                                {
+                                  "type": {
+                                    "value": "SetBooleanVariable"
+                                  },
+                                  "parameters": [
+                                    "Wrong__FX",
+                                    "True",
+                                    ""
+                                  ]
+                                },
+                                {
+                                  "type": {
+                                    "value": "PlaySoundCanal"
+                                  },
+                                  "parameters": [
+                                    "",
+                                    "Nyawa Berkurang.wav",
+                                    "2",
+                                    "no",
+                                    "game.sound",
+                                    "1"
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "BuiltinCommonInstructions::Standard",
+                              "conditions": [
+                                {
+                                  "type": {
+                                    "value": "StringVariable"
+                                  },
+                                  "parameters": [
+                                    "Directions[\"Q\" + ToString(QuestionIndex)]",
+                                    "=",
+                                    "\"Left\""
+                                  ]
+                                }
+                              ],
+                              "actions": [
+                                {
+                                  "type": {
+                                    "value": "SetNumberVariable"
+                                  },
+                                  "parameters": [
+                                    "QuestionIndex",
+                                    "+",
+                                    "1"
+                                  ]
+                                },
+                                {
+                                  "type": {
+                                    "value": "SetNumberVariable"
+                                  },
+                                  "parameters": [
+                                    "Fish_Collectedd",
+                                    "+",
+                                    "1"
+                                  ]
+                                },
+                                {
+                                  "type": {
+                                    "value": "TextContainerCapability::TextContainerBehavior::SetValue"
+                                  },
+                                  "parameters": [
+                                    "Fish_Collected",
+                                    "Text",
+                                    "=",
+                                    "Fish_Collectedd + \"/20\""
+                                  ]
+                                },
+                                {
+                                  "type": {
+                                    "value": "PanelSpriteSlider::PanelSpriteSlider::SetValue"
+                                  },
+                                  "parameters": [
+                                    "Fish",
+                                    "=",
+                                    "Fish_Collectedd",
+                                    ""
+                                  ]
+                                },
+                                {
+                                  "type": {
+                                    "value": "SetBooleanVariable"
+                                  },
+                                  "parameters": [
+                                    "Correct_FX",
+                                    "True",
+                                    ""
+                                  ]
+                                },
+                                {
+                                  "type": {
+                                    "value": "PlaySoundCanal"
+                                  },
+                                  "parameters": [
+                                    "",
+                                    "Jawaban Benar Bertambah.wav",
+                                    "2",
+                                    "no",
+                                    "game.sound",
+                                    "1"
+                                  ]
+                                },
+                                {
+                                  "type": {
+                                    "value": "Montre"
+                                  },
+                                  "parameters": [
+                                    "Questions",
+                                    ""
+                                  ]
+                                },
+                                {
+                                  "type": {
+                                    "value": "SetBooleanVariable"
+                                  },
+                                  "parameters": [
+                                    "IsQuestionVisible",
+                                    "True",
+                                    ""
+                                  ]
+                                },
+                                {
+                                  "type": {
+                                    "value": "ResetTimer"
+                                  },
+                                  "parameters": [
+                                    "",
+                                    "\"QuestionShow\""
+                                  ]
+                                }
+                              ],
+                              "events": [
+                                {
+                                  "type": "BuiltinCommonInstructions::Standard",
+                                  "conditions": [
+                                    {
+                                      "type": {
+                                        "value": "NumberVariable"
+                                      },
+                                      "parameters": [
+                                        "QuestionIndex",
+                                        "<=",
+                                        "TotalQuestion"
+                                      ]
+                                    }
+                                  ],
+                                  "actions": [
+                                    {
+                                      "type": {
+                                        "value": "AnimatableCapability::AnimatableBehavior::SetName"
+                                      },
+                                      "parameters": [
+                                        "Questions",
+                                        "Animation",
+                                        "=",
+                                        "QuestionIndex"
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "BuiltinCommonInstructions::Standard",
+                          "conditions": [
+                            {
+                              "type": {
+                                "value": "ButtonStates::ButtonFSM::IsClicked"
+                              },
+                              "parameters": [
+                                "Right",
+                                "ButtonFSM",
+                                ""
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "CompareTimer"
+                              },
+                              "parameters": [
+                                "",
+                                "\"Click Delay\"",
+                                ">",
+                                "0.8"
+                              ]
+                            }
+                          ],
+                          "actions": [
+                            {
+                              "type": {
+                                "value": "ResetTimer"
+                              },
+                              "parameters": [
+                                "",
+                                "\"Click Delay\""
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "PlaySoundCanal"
+                              },
+                              "parameters": [
+                                "",
+                                "Jawaban Kanan.wav",
+                                "2",
+                                "no",
+                                "game.sound",
+                                "1"
+                              ]
+                            }
+                          ],
+                          "events": [
+                            {
+                              "type": "BuiltinCommonInstructions::Standard",
+                              "conditions": [
+                                {
+                                  "type": {
+                                    "value": "StringVariable"
+                                  },
+                                  "parameters": [
+                                    "Directions[\"Q\" + ToString(QuestionIndex)]",
+                                    "!=",
+                                    "\"Right\""
+                                  ]
+                                }
+                              ],
+                              "actions": [
+                                {
+                                  "type": {
+                                    "value": "SetNumberVariable"
+                                  },
+                                  "parameters": [
+                                    "HeartLeft",
+                                    "-",
+                                    "1"
+                                  ]
+                                },
+                                {
+                                  "type": {
+                                    "value": "TextContainerCapability::TextContainerBehavior::SetValue"
+                                  },
+                                  "parameters": [
+                                    "Heart_Counter",
+                                    "Text",
+                                    "=",
+                                    "HeartLeft + \"/3\""
+                                  ]
+                                },
+                                {
+                                  "type": {
+                                    "value": "PanelSpriteSlider::PanelSpriteSlider::SetValue"
+                                  },
+                                  "parameters": [
+                                    "Hearts",
+                                    "=",
+                                    "HeartLeft",
+                                    ""
+                                  ]
+                                },
+                                {
+                                  "type": {
+                                    "value": "SetBooleanVariable"
+                                  },
+                                  "parameters": [
+                                    "Wrong__FX",
+                                    "True",
+                                    ""
+                                  ]
+                                },
+                                {
+                                  "type": {
+                                    "value": "PlaySoundCanal"
+                                  },
+                                  "parameters": [
+                                    "",
+                                    "Nyawa Berkurang.wav",
+                                    "2",
+                                    "no",
+                                    "game.sound",
+                                    "1"
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "BuiltinCommonInstructions::Standard",
+                              "conditions": [
+                                {
+                                  "type": {
+                                    "value": "StringVariable"
+                                  },
+                                  "parameters": [
+                                    "Directions[\"Q\" + ToString(QuestionIndex)]",
+                                    "=",
+                                    "\"Right\""
+                                  ]
+                                }
+                              ],
+                              "actions": [
+                                {
+                                  "type": {
+                                    "value": "SetNumberVariable"
+                                  },
+                                  "parameters": [
+                                    "QuestionIndex",
+                                    "+",
+                                    "1"
+                                  ]
+                                },
+                                {
+                                  "type": {
+                                    "value": "SetNumberVariable"
+                                  },
+                                  "parameters": [
+                                    "Fish_Collectedd",
+                                    "+",
+                                    "1"
+                                  ]
+                                },
+                                {
+                                  "type": {
+                                    "value": "TextContainerCapability::TextContainerBehavior::SetValue"
+                                  },
+                                  "parameters": [
+                                    "Fish_Collected",
+                                    "Text",
+                                    "=",
+                                    "Fish_Collectedd + \"/20\""
+                                  ]
+                                },
+                                {
+                                  "type": {
+                                    "value": "PanelSpriteSlider::PanelSpriteSlider::SetValue"
+                                  },
+                                  "parameters": [
+                                    "Fish",
+                                    "=",
+                                    "Fish_Collectedd",
+                                    ""
+                                  ]
+                                },
+                                {
+                                  "type": {
+                                    "value": "SetBooleanVariable"
+                                  },
+                                  "parameters": [
+                                    "Correct_FX",
+                                    "True",
+                                    ""
+                                  ]
+                                },
+                                {
+                                  "type": {
+                                    "value": "PlaySoundCanal"
+                                  },
+                                  "parameters": [
+                                    "",
+                                    "Jawaban Benar Bertambah.wav",
+                                    "2",
+                                    "no",
+                                    "game.sound",
+                                    "1"
+                                  ]
+                                },
+                                {
+                                  "type": {
+                                    "value": "Montre"
+                                  },
+                                  "parameters": [
+                                    "Questions",
+                                    ""
+                                  ]
+                                },
+                                {
+                                  "type": {
+                                    "value": "SetBooleanVariable"
+                                  },
+                                  "parameters": [
+                                    "IsQuestionVisible",
+                                    "True",
+                                    ""
+                                  ]
+                                },
+                                {
+                                  "type": {
+                                    "value": "ResetTimer"
+                                  },
+                                  "parameters": [
+                                    "",
+                                    "\"QuestionShow\""
+                                  ]
+                                }
+                              ],
+                              "events": [
+                                {
+                                  "type": "BuiltinCommonInstructions::Standard",
+                                  "conditions": [
+                                    {
+                                      "type": {
+                                        "value": "NumberVariable"
+                                      },
+                                      "parameters": [
+                                        "QuestionIndex",
+                                        "<=",
+                                        "TotalQuestion"
+                                      ]
+                                    }
+                                  ],
+                                  "actions": [
+                                    {
+                                      "type": {
+                                        "value": "AnimatableCapability::AnimatableBehavior::SetName"
+                                      },
+                                      "parameters": [
+                                        "Questions",
+                                        "Animation",
+                                        "=",
+                                        "QuestionIndex"
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "parameters": []
+                },
+                {
+                  "colorB": 0,
+                  "colorG": 0,
+                  "colorR": 0,
+                  "creationTime": 0,
+                  "folded": true,
+                  "name": "PC",
+                  "source": "",
+                  "type": "BuiltinCommonInstructions::Group",
+                  "events": [
+                    {
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [
+                        {
+                          "type": {
+                            "value": "KeyFromTextPressed"
+                          },
+                          "parameters": [
+                            "Left",
+                            "\"Left\""
+                          ]
+                        },
+                        {
+                          "type": {
+                            "value": "CompareTimer"
+                          },
+                          "parameters": [
+                            "",
+                            "\"Click Delay\"",
+                            ">",
+                            "0.8"
+                          ]
+                        },
+                        {
+                          "type": {
+                            "value": "BooleanVariable"
+                          },
+                          "parameters": [
+                            "Dialoguee",
+                            "False",
+                            ""
+                          ]
+                        },
+                        {
+                          "type": {
                             "value": "NumberVariable"
                           },
                           "parameters": [
-                            "QuestionIndex",
-                            "<=",
-                            "TotalQuestion"
+                            "isPaused",
+                            "=",
+                            "0"
                           ]
                         }
                       ],
                       "actions": [
                         {
                           "type": {
-                            "value": "AnimatableCapability::AnimatableBehavior::SetName"
+                            "value": "ResetTimer"
                           },
                           "parameters": [
-                            "Questions",
-                            "Animation",
+                            "",
+                            "\"Click Delay\""
+                          ]
+                        },
+                        {
+                          "type": {
+                            "value": "PlaySoundCanal"
+                          },
+                          "parameters": [
+                            "",
+                            "Jawaban Kiri.wav",
+                            "2",
+                            "no",
+                            "game.sound",
+                            "1"
+                          ]
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "BuiltinCommonInstructions::Standard",
+                          "conditions": [
+                            {
+                              "type": {
+                                "value": "StringVariable"
+                              },
+                              "parameters": [
+                                "Directions[\"Q\" + ToString(QuestionIndex)]",
+                                "!=",
+                                "\"Left\""
+                              ]
+                            }
+                          ],
+                          "actions": [
+                            {
+                              "type": {
+                                "value": "SetNumberVariable"
+                              },
+                              "parameters": [
+                                "HeartLeft",
+                                "-",
+                                "1"
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "TextContainerCapability::TextContainerBehavior::SetValue"
+                              },
+                              "parameters": [
+                                "Heart_Counter",
+                                "Text",
+                                "=",
+                                "HeartLeft + \"/3\""
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "PanelSpriteSlider::PanelSpriteSlider::SetValue"
+                              },
+                              "parameters": [
+                                "Hearts",
+                                "=",
+                                "HeartLeft",
+                                ""
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "SetBooleanVariable"
+                              },
+                              "parameters": [
+                                "Wrong__FX",
+                                "True",
+                                ""
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "PlaySoundCanal"
+                              },
+                              "parameters": [
+                                "",
+                                "Nyawa Berkurang.wav",
+                                "2",
+                                "no",
+                                "game.sound",
+                                "1"
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "BuiltinCommonInstructions::Standard",
+                          "conditions": [
+                            {
+                              "type": {
+                                "value": "StringVariable"
+                              },
+                              "parameters": [
+                                "Directions[\"Q\" + ToString(QuestionIndex)]",
+                                "=",
+                                "\"Left\""
+                              ]
+                            }
+                          ],
+                          "actions": [
+                            {
+                              "type": {
+                                "value": "SetNumberVariable"
+                              },
+                              "parameters": [
+                                "QuestionIndex",
+                                "+",
+                                "1"
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "SetNumberVariable"
+                              },
+                              "parameters": [
+                                "Fish_Collectedd",
+                                "+",
+                                "1"
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "TextContainerCapability::TextContainerBehavior::SetValue"
+                              },
+                              "parameters": [
+                                "Fish_Collected",
+                                "Text",
+                                "=",
+                                "Fish_Collectedd + \"/20\""
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "PanelSpriteSlider::PanelSpriteSlider::SetValue"
+                              },
+                              "parameters": [
+                                "Fish",
+                                "=",
+                                "Fish_Collectedd",
+                                ""
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "SetBooleanVariable"
+                              },
+                              "parameters": [
+                                "Correct_FX",
+                                "True",
+                                ""
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "PlaySoundCanal"
+                              },
+                              "parameters": [
+                                "",
+                                "Jawaban Benar Bertambah.wav",
+                                "2",
+                                "no",
+                                "game.sound",
+                                "1"
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "Montre"
+                              },
+                              "parameters": [
+                                "Questions",
+                                ""
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "SetBooleanVariable"
+                              },
+                              "parameters": [
+                                "IsQuestionVisible",
+                                "True",
+                                ""
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "ResetTimer"
+                              },
+                              "parameters": [
+                                "",
+                                "\"QuestionShow\""
+                              ]
+                            }
+                          ],
+                          "events": [
+                            {
+                              "type": "BuiltinCommonInstructions::Standard",
+                              "conditions": [
+                                {
+                                  "type": {
+                                    "value": "NumberVariable"
+                                  },
+                                  "parameters": [
+                                    "QuestionIndex",
+                                    "<=",
+                                    "TotalQuestion"
+                                  ]
+                                }
+                              ],
+                              "actions": [
+                                {
+                                  "type": {
+                                    "value": "AnimatableCapability::AnimatableBehavior::SetName"
+                                  },
+                                  "parameters": [
+                                    "Questions",
+                                    "Animation",
+                                    "=",
+                                    "QuestionIndex"
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [
+                        {
+                          "type": {
+                            "value": "KeyFromTextPressed"
+                          },
+                          "parameters": [
+                            "Right",
+                            "\"Right\""
+                          ]
+                        },
+                        {
+                          "type": {
+                            "value": "CompareTimer"
+                          },
+                          "parameters": [
+                            "",
+                            "\"Click Delay\"",
+                            ">",
+                            "0.8"
+                          ]
+                        },
+                        {
+                          "type": {
+                            "value": "BooleanVariable"
+                          },
+                          "parameters": [
+                            "Dialoguee",
+                            "False",
+                            ""
+                          ]
+                        },
+                        {
+                          "type": {
+                            "value": "NumberVariable"
+                          },
+                          "parameters": [
+                            "isPaused",
                             "=",
-                            "QuestionIndex"
+                            "0"
+                          ]
+                        }
+                      ],
+                      "actions": [
+                        {
+                          "type": {
+                            "value": "ResetTimer"
+                          },
+                          "parameters": [
+                            "",
+                            "\"Click Delay\""
+                          ]
+                        },
+                        {
+                          "type": {
+                            "value": "PlaySoundCanal"
+                          },
+                          "parameters": [
+                            "",
+                            "Jawaban Kanan.wav",
+                            "2",
+                            "no",
+                            "game.sound",
+                            "1"
+                          ]
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "BuiltinCommonInstructions::Standard",
+                          "conditions": [
+                            {
+                              "type": {
+                                "value": "StringVariable"
+                              },
+                              "parameters": [
+                                "Directions[\"Q\" + ToString(QuestionIndex)]",
+                                "!=",
+                                "\"Right\""
+                              ]
+                            }
+                          ],
+                          "actions": [
+                            {
+                              "type": {
+                                "value": "SetNumberVariable"
+                              },
+                              "parameters": [
+                                "HeartLeft",
+                                "-",
+                                "1"
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "TextContainerCapability::TextContainerBehavior::SetValue"
+                              },
+                              "parameters": [
+                                "Heart_Counter",
+                                "Text",
+                                "=",
+                                "HeartLeft + \"/3\""
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "PanelSpriteSlider::PanelSpriteSlider::SetValue"
+                              },
+                              "parameters": [
+                                "Hearts",
+                                "=",
+                                "HeartLeft",
+                                ""
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "SetBooleanVariable"
+                              },
+                              "parameters": [
+                                "Wrong__FX",
+                                "True",
+                                ""
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "PlaySoundCanal"
+                              },
+                              "parameters": [
+                                "",
+                                "Nyawa Berkurang.wav",
+                                "2",
+                                "no",
+                                "game.sound",
+                                "1"
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "BuiltinCommonInstructions::Standard",
+                          "conditions": [
+                            {
+                              "type": {
+                                "value": "StringVariable"
+                              },
+                              "parameters": [
+                                "Directions[\"Q\" + ToString(QuestionIndex)]",
+                                "=",
+                                "\"Right\""
+                              ]
+                            }
+                          ],
+                          "actions": [
+                            {
+                              "type": {
+                                "value": "SetNumberVariable"
+                              },
+                              "parameters": [
+                                "QuestionIndex",
+                                "+",
+                                "1"
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "SetNumberVariable"
+                              },
+                              "parameters": [
+                                "Fish_Collectedd",
+                                "+",
+                                "1"
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "TextContainerCapability::TextContainerBehavior::SetValue"
+                              },
+                              "parameters": [
+                                "Fish_Collected",
+                                "Text",
+                                "=",
+                                "Fish_Collectedd + \"/20\""
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "PanelSpriteSlider::PanelSpriteSlider::SetValue"
+                              },
+                              "parameters": [
+                                "Fish",
+                                "=",
+                                "Fish_Collectedd",
+                                ""
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "SetBooleanVariable"
+                              },
+                              "parameters": [
+                                "Correct_FX",
+                                "True",
+                                ""
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "PlaySoundCanal"
+                              },
+                              "parameters": [
+                                "",
+                                "Jawaban Benar Bertambah.wav",
+                                "2",
+                                "no",
+                                "game.sound",
+                                "1"
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "Montre"
+                              },
+                              "parameters": [
+                                "Questions",
+                                ""
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "SetBooleanVariable"
+                              },
+                              "parameters": [
+                                "IsQuestionVisible",
+                                "True",
+                                ""
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "ResetTimer"
+                              },
+                              "parameters": [
+                                "",
+                                "\"QuestionShow\""
+                              ]
+                            }
+                          ],
+                          "events": [
+                            {
+                              "type": "BuiltinCommonInstructions::Standard",
+                              "conditions": [
+                                {
+                                  "type": {
+                                    "value": "NumberVariable"
+                                  },
+                                  "parameters": [
+                                    "QuestionIndex",
+                                    "<=",
+                                    "TotalQuestion"
+                                  ]
+                                }
+                              ],
+                              "actions": [
+                                {
+                                  "type": {
+                                    "value": "AnimatableCapability::AnimatableBehavior::SetName"
+                                  },
+                                  "parameters": [
+                                    "Questions",
+                                    "Animation",
+                                    "=",
+                                    "QuestionIndex"
+                                  ]
+                                }
+                              ]
+                            }
                           ]
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "parameters": []
                 }
-              ]
+              ],
+              "parameters": []
             },
             {
               "type": "BuiltinCommonInstructions::Standard",
               "conditions": [
                 {
                   "type": {
-                    "value": "ButtonStates::ButtonFSM::IsClicked"
+                    "value": "NumberVariable"
                   },
                   "parameters": [
-                    "Right",
-                    "ButtonFSM",
+                    "QuestionIndex",
+                    "<=",
+                    "TotalQuestion"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Montre"
+                  },
+                  "parameters": [
+                    "Questions",
                     ""
                   ]
                 },
                 {
                   "type": {
-                    "value": "CompareTimer"
+                    "value": "SetBooleanVariable"
                   },
                   "parameters": [
-                    "",
-                    "\"Click Delay\"",
-                    ">",
-                    "0.8"
+                    "IsQuestionVisible",
+                    "True",
+                    ""
                   ]
-                }
-              ],
-              "actions": [
+                },
                 {
                   "type": {
                     "value": "ResetTimer"
                   },
                   "parameters": [
                     "",
-                    "\"Click Delay\""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "PlaySoundCanal"
-                  },
-                  "parameters": [
-                    "",
-                    "Jawaban Kanan.wav",
-                    "2",
-                    "no",
-                    "game.sound",
-                    "1"
-                  ]
-                }
-              ],
-              "events": [
-                {
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "value": "StringVariable"
-                      },
-                      "parameters": [
-                        "Directions[\"Q\" + ToString(QuestionIndex)]",
-                        "!=",
-                        "\"Right\""
-                      ]
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "value": "SetNumberVariable"
-                      },
-                      "parameters": [
-                        "HeartLeft",
-                        "-",
-                        "1"
-                      ]
-                    },
-                    {
-                      "type": {
-                        "value": "TextContainerCapability::TextContainerBehavior::SetValue"
-                      },
-                      "parameters": [
-                        "Heart_Counter",
-                        "Text",
-                        "=",
-                        "HeartLeft + \"/3\""
-                      ]
-                    },
-                    {
-                      "type": {
-                        "value": "PanelSpriteSlider::PanelSpriteSlider::SetValue"
-                      },
-                      "parameters": [
-                        "Hearts",
-                        "=",
-                        "HeartLeft",
-                        ""
-                      ]
-                    },
-                    {
-                      "type": {
-                        "value": "SetBooleanVariable"
-                      },
-                      "parameters": [
-                        "Wrong__FX",
-                        "True",
-                        ""
-                      ]
-                    },
-                    {
-                      "type": {
-                        "value": "PlaySoundCanal"
-                      },
-                      "parameters": [
-                        "",
-                        "Nyawa Berkurang.wav",
-                        "2",
-                        "no",
-                        "game.sound",
-                        "1"
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "value": "StringVariable"
-                      },
-                      "parameters": [
-                        "Directions[\"Q\" + ToString(QuestionIndex)]",
-                        "=",
-                        "\"Right\""
-                      ]
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "value": "SetNumberVariable"
-                      },
-                      "parameters": [
-                        "QuestionIndex",
-                        "+",
-                        "1"
-                      ]
-                    },
-                    {
-                      "type": {
-                        "value": "SetNumberVariable"
-                      },
-                      "parameters": [
-                        "Fish_Collectedd",
-                        "+",
-                        "1"
-                      ]
-                    },
-                    {
-                      "type": {
-                        "value": "TextContainerCapability::TextContainerBehavior::SetValue"
-                      },
-                      "parameters": [
-                        "Fish_Collected",
-                        "Text",
-                        "=",
-                        "Fish_Collectedd + \"/20\""
-                      ]
-                    },
-                    {
-                      "type": {
-                        "value": "PanelSpriteSlider::PanelSpriteSlider::SetValue"
-                      },
-                      "parameters": [
-                        "Fish",
-                        "=",
-                        "Fish_Collectedd",
-                        ""
-                      ]
-                    },
-                    {
-                      "type": {
-                        "value": "SetBooleanVariable"
-                      },
-                      "parameters": [
-                        "Correct_FX",
-                        "True",
-                        ""
-                      ]
-                    },
-                    {
-                      "type": {
-                        "value": "PlaySoundCanal"
-                      },
-                      "parameters": [
-                        "",
-                        "Jawaban Benar Bertambah.wav",
-                        "2",
-                        "no",
-                        "game.sound",
-                        "1"
-                      ]
-                    }
-                  ],
-                  "events": [
-                    {
-                      "type": "BuiltinCommonInstructions::Standard",
-                      "conditions": [
-                        {
-                          "type": {
-                            "value": "NumberVariable"
-                          },
-                          "parameters": [
-                            "QuestionIndex",
-                            "<=",
-                            "TotalQuestion"
-                          ]
-                        }
-                      ],
-                      "actions": [
-                        {
-                          "type": {
-                            "value": "AnimatableCapability::AnimatableBehavior::SetName"
-                          },
-                          "parameters": [
-                            "Questions",
-                            "Animation",
-                            "=",
-                            "QuestionIndex"
-                          ]
-                        }
-                      ]
-                    }
+                    "\"QuestionShow\""
                   ]
                 }
               ]
@@ -8693,6 +9531,7 @@
           "colorG": 6,
           "colorR": 36,
           "creationTime": 0,
+          "folded": true,
           "name": "Timer",
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
@@ -8999,6 +9838,16 @@
               "actions": [
                 {
                   "type": {
+                    "value": "SetNumberVariable"
+                  },
+                  "parameters": [
+                    "isPaused",
+                    "=",
+                    "1"
+                  ]
+                },
+                {
+                  "type": {
                     "value": "StopSoundCanal"
                   },
                   "parameters": [
@@ -9155,6 +10004,16 @@
                 }
               ],
               "actions": [
+                {
+                  "type": {
+                    "value": "SetNumberVariable"
+                  },
+                  "parameters": [
+                    "isPaused",
+                    "=",
+                    "0"
+                  ]
+                },
                 {
                   "type": {
                     "value": "RePlaySoundCanal"
@@ -9398,7 +10257,6 @@
           "colorG": 128,
           "colorR": 223,
           "creationTime": 0,
-          "folded": true,
           "name": "Win",
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
@@ -9424,6 +10282,16 @@
                 }
               ],
               "actions": [
+                {
+                  "type": {
+                    "value": "SetNumberVariable"
+                  },
+                  "parameters": [
+                    "isPaused",
+                    "=",
+                    "1"
+                  ]
+                },
                 {
                   "type": {
                     "value": "StopSoundCanal"
@@ -9875,6 +10743,7 @@
           "ambientLightColorB": 200,
           "ambientLightColorG": 200,
           "ambientLightColorR": 200,
+          "camera2DPlaneMaxDrawingDistance": 5000,
           "camera3DFarPlaneDistance": 10000,
           "camera3DFieldOfView": 45,
           "camera3DNearPlaneDistance": 3,
@@ -9952,6 +10821,7 @@
           "ambientLightColorB": 200,
           "ambientLightColorG": 200,
           "ambientLightColorR": 200,
+          "camera2DPlaneMaxDrawingDistance": 5000,
           "camera3DFarPlaneDistance": 10000,
           "camera3DFieldOfView": 45,
           "camera3DNearPlaneDistance": 3,
@@ -10005,6 +10875,7 @@
           "ambientLightColorB": 200,
           "ambientLightColorG": 200,
           "ambientLightColorR": 200,
+          "camera2DPlaneMaxDrawingDistance": 5000,
           "camera3DFarPlaneDistance": 10000,
           "camera3DFieldOfView": 45,
           "camera3DNearPlaneDistance": 3,
@@ -10590,6 +11461,7 @@
           "ambientLightColorB": 200,
           "ambientLightColorG": 200,
           "ambientLightColorR": 200,
+          "camera2DPlaneMaxDrawingDistance": 5000,
           "camera3DFarPlaneDistance": 10000,
           "camera3DFieldOfView": 45,
           "camera3DNearPlaneDistance": 3,
@@ -10654,6 +11526,7 @@
           "ambientLightColorB": 200,
           "ambientLightColorG": 200,
           "ambientLightColorR": 200,
+          "camera2DPlaneMaxDrawingDistance": 5000,
           "camera3DFarPlaneDistance": 10000,
           "camera3DFieldOfView": 45,
           "camera3DNearPlaneDistance": 3,
@@ -18254,6 +19127,7 @@
               "ambientLightColorB": 200,
               "ambientLightColorG": 200,
               "ambientLightColorR": 200,
+              "camera2DPlaneMaxDrawingDistance": 5000,
               "camera3DFarPlaneDistance": 10000,
               "camera3DFieldOfView": 45,
               "camera3DNearPlaneDistance": 3,
@@ -27936,6 +28810,7 @@
               "ambientLightColorB": 200,
               "ambientLightColorG": 200,
               "ambientLightColorR": 200,
+              "camera2DPlaneMaxDrawingDistance": 5000,
               "camera3DFarPlaneDistance": 10000,
               "camera3DFieldOfView": 45,
               "camera3DNearPlaneDistance": 3,
@@ -30000,6 +30875,7 @@
                   "ambientLightColorB": 200,
                   "ambientLightColorG": 200,
                   "ambientLightColorR": 200,
+                  "camera2DPlaneMaxDrawingDistance": 5000,
                   "camera3DFarPlaneDistance": 10000,
                   "camera3DFieldOfView": 45,
                   "camera3DNearPlaneDistance": 3,
@@ -30241,6 +31117,7 @@
                   "ambientLightColorB": 200,
                   "ambientLightColorG": 200,
                   "ambientLightColorR": 200,
+                  "camera2DPlaneMaxDrawingDistance": 5000,
                   "camera3DFarPlaneDistance": 10000,
                   "camera3DFieldOfView": 45,
                   "camera3DNearPlaneDistance": 3,
